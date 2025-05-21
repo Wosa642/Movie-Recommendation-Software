@@ -1,0 +1,187 @@
+{
+    "Sci-Fi": [
+        {
+            "title": "Blade Runner",
+            "director": "Ridley Scott",
+            "year": 1982,
+            "rating": "R",
+            "tags": ["futuristic", "cyberpunk", "action"]
+        },
+        {
+            "title": "The Matrix",
+            "director": "Wachowski Sisters",
+            "year": 1999,
+            "rating": "R",
+            "tags": ["cyberpunk", "action", "virtual reality"]
+        },
+        {
+            "title": "Interstellar",
+            "director": "Christopher Nolan",
+            "year": 2014,
+            "rating": "PG-13",
+            "tags": ["space", "exploration", "drama"]
+        },
+        {
+            "title": "Star Wars: Episode IV - A New Hope",
+            "director": "George Lucas",
+            "year": 1977,
+            "rating": "PG",
+            "tags": ["space opera", "adventure", "epic"]
+        },
+        {
+            "title": "Arrival",
+            "director": "Denis Villeneuve",
+            "year": 2016,
+            "rating": "PG-13",
+            "tags": ["aliens", "linguistics", "drama"]
+        }
+    ],
+    "Action": [
+        {
+            "title": "Die Hard",
+            "director": "John McTiernan",
+            "year": 1988,
+            "rating": "R",
+            "tags": ["explosive", "thriller", "hero"]
+        },
+        {
+            "title": "Mad Max: Fury Road",
+            "director": "George Miller",
+            "year": 2015,
+            "rating": "R",
+            "tags": ["chase", "post-apocalyptic", "intense"]
+        },
+        {
+            "title": "The Dark Knight",
+            "director": "Christopher Nolan",
+            "year": 2008,
+            "rating": "PG-13",
+            "tags": ["superhero", "crime", "drama"]
+        },
+        {
+            "title": "John Wick",
+            "director": "Chad Stahelski",
+            "year": 2014,
+            "rating": "R",
+            "tags": ["revenge", "martial arts", "stylized"]
+        },
+        {
+            "title": "Speed",
+            "director": "Jan de Bont",
+            "year": 1994,
+            "rating": "R",
+            "tags": ["thriller", "race against time", "explosive"]
+        }
+    ],
+    "War": [
+        {
+            "title": "Saving Private Ryan",
+            "director": "Steven Spielberg",
+            "year": 1998,
+            "rating": "R",
+            "tags": ["world war II", "intense", "drama"]
+        },
+        {
+            "title": "Apocalypse Now",
+            "director": "Francis Ford Coppola",
+            "year": 1979,
+            "rating": "R",
+            "tags": ["vietnam war", "psychological", "epic"]
+        },
+        {
+            "title": "Dunkirk",
+            "director": "Christopher Nolan",
+            "year": 2017,
+            "rating": "PG-13",
+            "tags": ["world war II", "survival", "tense"]
+        },
+        {
+            "title": "Platoon",
+            "director": "Oliver Stone",
+            "year": 1986,
+            "rating": "R",
+            "tags": ["vietnam war", "gritty", "drama"]
+        },
+        {
+            "title": "1917",
+            "director": "Sam Mendes",
+            "year": 2019,
+            "rating": "R",
+            "tags": ["world war I", "continuous shot", "intense"]
+        }
+    ],
+    "Comedy": [
+        {
+            "title": "Superbad",
+            "director": "Greg Mottola",
+            "year": 2007,
+            "rating": "R",
+            "tags": ["teen", "funny", "coming of age"]
+        },
+        {
+            "title": "The Grand Budapest Hotel",
+            "director": "Wes Anderson",
+            "year": 2014,
+            "rating": "R",
+            "tags": ["quirky", "funny", "stylized"]
+        },
+        {
+            "title": "Groundhog Day",
+            "director": "Harold Ramis",
+            "year": 1993,
+            "rating": "PG",
+            "tags": ["time loop", "humorous", "romance"]
+        },
+        {
+            "title": "Anchorman: The Legend of Ron Burgundy",
+            "director": "Adam McKay",
+            "year": 2004,
+            "rating": "PG-13",
+            "tags": ["satire", "funny", "absurd"]
+        },
+        {
+            "title": "In Bruges",
+            "director": "Martin McDonagh",
+            "year": 2008,
+            "rating": "R",
+            "tags": ["dark comedy", "crime", "witty"]
+        }
+    ], 
+    "Fantasy": [
+        {
+            "title": "The Lord of the Rings: The Fellowship of the Ring",
+            "director": "Peter Jackson",
+            "year": 2001,
+            "rating": "PG-13",
+            "tags": ["epic", "adventure", "magic"]
+        },
+        {
+            "title": "How to Train Your Dragon",
+            "director": "Chris Sanders, Dean DeBlois",
+            "year": 2010,
+            "rating": "PG",
+            "tags": ["dragons", "animation", "adventure"]
+        },
+        {
+            "title": "Pan's Labyrinth",
+            "director": "Guillermo del Toro",
+            "year": 2006,
+            "rating": "R",
+            "tags": ["dark fantasy", "war", "fairy tale"]
+        },
+        {
+            "title": "The Princess Bride",
+            "director": "Rob Reiner",
+            "year": 1987,
+            "rating": "PG",
+            "tags": ["romance", "adventure", "comedy"]
+        },
+        {
+            "title": "Harry Potter and the Philosopher's Stone",
+            "director": "Chris Columbus",
+            "year": 2001,
+            "rating": "PG",
+            "tags": ["magic", "wizards", "adventure"]
+        }
+    ]
+}

@@ -25,15 +25,37 @@ def recommend_movies(movies, query):
         else:
             return 'No recent movies found in this genre.'
           
-    # Check if query is a genre
-    if query in movies:
-         # Sort by year (newest first) for cleaner output
-        return sorted(movies[query], key=lambda x: x['year'], reverse=True)
-    # search for keyword in tags
+    # Fuzzy Genre matching
+    matching_genres = []
+    for genre in movies.keys():
+        if query in genre.lower():
+            matching_genres.append(genre)
+    
+    if matching_genres:
+        if len(matching_genres) > 1:
+            print("\nDid you mean one of these genres?")
+            for i, genre in enumerate(matching_genres, 1):
+                print(f"{i + 1}. {genre}")
+            try:
+                choice = int(input("\nEnter the number of your choice (or 0 to search all): "))
+                if 0 < choice <= len(matching_genres):
+                    return sorted(movies[matching_genres[choice-1]], key=lambda x: x['year'], reverse=True)
+                elif choice == 0:
+                    results = []
+                    for genre in matching_genres:
+                        results.extend(movies[genre])
+                    return sorted(results, key=lambda x: x['year'], reverse=True)
+            except ValueError:
+                pass
+        else:
+            return sorted (movies[matching_genres[0]], key=lambda x: x['year'], reverse=True)
+    
+    
+    # Fuzzy Tag matching
     results = []
     for genre in movies:
         for movie in movies[genre]:
-            if query.lower() in [tag.lower() for tag in movie.get('tags', [])]:
+            if any(query.lower() in tag.lower() for tag in movie.get('tags', [])):
                 results.append(movie)
 
     # Sort keyword results by year
@@ -75,5 +97,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+   main()
     
