@@ -52,7 +52,7 @@ def display_recommendations(recommendations):
         print(recommendations)
 
 def main():
-    movies = load_movies
+    movies = load_movies()
     if not movies:
         print('No movies to recommend')#
         return
@@ -70,8 +70,9 @@ def main():
             print("Please enter a genre, keyword, or 'quit'.")
             continue
         
-        recommendations = recommend_movies(user_input, movies)
+        recommendations = recommend_movies(movies, user_input)
         display_recommendations(recommendations)
+
 
 if __name__ == "__main__":
     main()
