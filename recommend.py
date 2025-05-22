@@ -1,41 +1,43 @@
-# Movie Recommender System
-# This script recommends movies based on user input.
-# adding to verify git tracking.
 import json
 
 def load_movies(file_path='movies.json'):
-    import json
-    with open(file_path, 'r') as file:
-        movies = json.load(file)
-    return movies
-
-
+    try:
+        with open(file_path, 'r') as file:
+            movies = json.load(file)
+        return movies
+    except FileNotFoundError:
+        print(f"Error: {file_path} not found.")
+        return {}
+    except json.JSONDecodeError:
+        print("Error: Invalid JSON format in movies.json.")
+        return {}
 
 def recommend_movies(movies, query):
     if not movies:
         return 'No movies available for recommendation.'
-    query = query.strip().title()
+    
+    query = query.strip().lower()  # Convert query to lowercase for consistent matching
 
-    if query.startswith('Recent'):
-        genre = query.replace('Recent', '').strip().title()
-        if genre in movies:
-            recent_movies = [movies for movies in movies[genre] if movies['year'] >= 2000]
-        if recent_movies:
-            return sorted(recent_movies, key=lambda x: x['year'], reverse=True)
-        else:
+    # Handle "Recent <genre>" queries
+    if query.startswith('recent'):
+        genre_query = query.replace('recent', '').strip()
+        matching_genres = [g for g in movies if genre_query in g.lower()]
+        if matching_genres:
+            genre = matching_genres[0]  # Pick the first matching genre
+            recent_movies = [movie for movie in movies[genre] if movie['year'] >= 2000]
+            if recent_movies:
+                return sorted(recent_movies, key=lambda x: x['year'], reverse=True)
             return 'No recent movies found in this genre.'
-          
+        return 'No matching genres found for recent movies.'
+
     # Fuzzy Genre matching
-    matching_genres = []
-    for genre in movies.keys():
-        if query in genre.lower():
-            matching_genres.append(genre)
+    matching_genres = [g for g in movies if query in g.lower()]
     
     if matching_genres:
         if len(matching_genres) > 1:
             print("\nDid you mean one of these genres?")
             for i, genre in enumerate(matching_genres, 1):
-                print(f"{i + 1}. {genre}")
+                print(f"{i}. {genre}")
             try:
                 choice = int(input("\nEnter the number of your choice (or 0 to search all): "))
                 if 0 < choice <= len(matching_genres):
@@ -45,23 +47,30 @@ def recommend_movies(movies, query):
                     for genre in matching_genres:
                         results.extend(movies[genre])
                     return sorted(results, key=lambda x: x['year'], reverse=True)
+                else:
+                    print("Invalid choice, searching all matching genres.")
+                    results = []
+                    for genre in matching_genres:
+                        results.extend(movies[genre])
+                    return sorted(results, key=lambda x: x['year'], reverse=True)
             except ValueError:
-                pass
+                print("Invalid input, searching all matching genres.")
+                results = []
+                for genre in matching_genres:
+                    results.extend(movies[genre])
+                return sorted(results, key=lambda x: x['year'], reverse=True)
         else:
-            return sorted (movies[matching_genres[0]], key=lambda x: x['year'], reverse=True)
-    
+            return sorted(movies[matching_genres[0]], key=lambda x: x['year'], reverse=True)
     
     # Fuzzy Tag matching
     results = []
     for genre in movies:
         for movie in movies[genre]:
-            if any(query.lower() in tag.lower() for tag in movie.get('tags', [])):
+            if any(query in tag.lower() for tag in movie.get('tags', [])):
                 results.append(movie)
 
-    # Sort keyword results by year
-    return sorted(results, key=lambda x: x["year"], reverse=True) if results else "No matches found for genre or keyword." 
+    return sorted(results, key=lambda x: x['year'], reverse=True) if results else "No matches found for genre or keyword."
 
-# Display recommendations in a formatted way
 def display_recommendations(recommendations):
     if isinstance(recommendations, list):
         if recommendations:
@@ -76,7 +85,7 @@ def display_recommendations(recommendations):
 def main():
     movies = load_movies()
     if not movies:
-        print('No movies to recommend')#
+        print('No movies to recommend')
         return
     
     print("Welcome to the Movie Recommender!")
@@ -85,7 +94,7 @@ def main():
 
     while True:
         user_input = input("\nWhat would you like to watch? ").strip()
-        if user_input.lower() == "quit":
+        if user_input.lower() == 'quit':
             print("Goodbye!")
             break
         if not user_input:
@@ -95,7 +104,5 @@ def main():
         recommendations = recommend_movies(movies, user_input)
         display_recommendations(recommendations)
 
-
 if __name__ == "__main__":
-   main()
-    
+    main()
